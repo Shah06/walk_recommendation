@@ -13,10 +13,12 @@ Our development agenda can be accessed through our [Trello Board](https://trello
 
 Running walk_recommendation is simple:
 
-	chmod +x setup-docker.sh
-	./setup-docker.sh
+```sh
+chmod +x setup-docker.sh
+./setup-docker.sh
+```
 
-Note: ensure that you have adequate permissions to open ports 80 and 3306. You may have to use:
+Note: ensure that you have adequate permissions to open ports 80 and 3306.
 
 # Backend API
 
@@ -39,12 +41,12 @@ For development only, returns the whole `users` table;
 Allows the creation of a new user. The fields `email`, `password`, `name`, and `city` fields must be defined.
 
 Example JSON request body:
-```
+```JSON
 {
-	"email": "jsmith@ucsd.edu",
-  	"password": "bad_password123",
-  	"name": "Atharva Shah",
-  	"city": "La Jolla, CA, USA"
+  "email": "jsmith@ucsd.edu",
+  "password": "bad_password123",
+  "name": "Atharva Shah",
+  "city": "La Jolla, CA, USA"
 }
 ```
 Successful response:
@@ -56,10 +58,10 @@ On failure, the server will return a `400 Bad Request` status code.
 Allows the user to log in given `email` and `password`. The server will then send back a `sessionId`. This `sessionId` will be used to authenticate any other requests. A successful response will be in the form of a UUID (uuid4, to be precise).
 
 Example JSON request body:
-```
+```JSON
 {
-	"email": "jsmith@example.com",
-  	"password": "bad_password123"
+  "email": "jsmith@example.com",
+  "password": "bad_password123"
 }
 ```
 Successful response:
@@ -73,7 +75,7 @@ On failure, the server will return a `401 Unauthorized` status code.
 Updates specified records. Note that a `sessionId` must be specified. Any number of fields that exist can be specified in the `updateFields` object. For instance, the example below can omit any 3 of the 4 fields and the request would still be valid.
 
 Example JSON request body:
-```
+```JSON
 {
   "sessionId": "94da21b2-65f0-4cd5-a8b6-6c4ce3499ce0",
   "updateFields": {
@@ -93,7 +95,7 @@ On failure, the server will return a `401 Unauthorized` status code.
 Gets the weather data for a specific user's city, according to [OpenWeatherMap's 5 day forecast](https://openweathermap.org/forecast5).
 
 Example JSON request body:
-```
+```JSON
 {
   "sessionId": "94da21b2-65f0-4cd5-a8b6-6c4ce3499ce0"
 }
