@@ -172,6 +172,7 @@ app.post("/update", (req, res) => {
 
 				let column = SQL_CON.escape(param);
 				column = column.substring(1, column.length-1);
+				if (column == 'id') continue;	// prevent user from modifying their id
 				let value = SQL_CON.escape(req.body.updateFields[param]);
 
 				sql = sql + `${column}=${value}, `
