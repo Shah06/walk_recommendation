@@ -195,6 +195,66 @@ app.post("/update", (req, res) => {
 
 });
 
+app.post("/profile", (req, res) => {
+
+	let sessionId = req.body.sessionId;
+	authSession(sessionId, (auth) => {
+		if (!auth) {
+			res.status(401).end();
+		} else {
+			let userId = SQL_CON.escape(auth[0].userId);
+			let sql = `SELECT id, name, email, city FROM users WHERE id=${userId};`;
+			SQL_CON.query(sql, (err, results) => {
+				if (err) {
+					console.log(err);
+					res.status(401).send();
+				} else {
+					res.send(results);
+				}
+			})
+		}
+	});
+
+});
+
+app.post("/logout", (req, res) => {
+
+	let sessionId = req.body.sessionId;
+	let everywhere = req.body.everywhere;
+
+	authSession(sessionId, (auth) => {
+		if (!auth) {
+			res.status(401).send();
+		} else {
+			sessionId = SQL_CON.escape(sessionId);
+			let sql;
+			if (everywhere) {
+				let userId = SQL_CON.escape(auth[0].userId);
+				sql = `DELETE FROM sessions WHERE userId=${userId};`;
+				SQL_CON.query(sql, (err, results) => {
+					if (err) {
+						console.log(err);
+						res.status(401).send();
+					} else {
+						res.send(`Successfully destroyed all sessions for user with id ${userId}`);
+					}
+				});
+			} else {
+				let sql = `DELETE FROM sessions WHERE sessionId=${sessionId};`;
+				SQL_CON.query(sql, (err, results) => {
+					if (err) {
+						console.log(err);
+						res.status(401).send();
+					} else {
+						res.send(`Successfully destroyed session ${sessionId} for user with id ${auth[0].userId}`);
+					}
+				});
+			}
+		}
+	})
+
+});
+
 app.listen(PORT);
 
 
