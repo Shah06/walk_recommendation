@@ -1,0 +1,21 @@
+body, html {
+    height: 100%;
+  }
+
+#SignUpSheetContainer{
+    width: 40%;
+    margin: auto;
+    justify-content: center;
+}
+#SignUpSheet{
+    background-color: whitesmoke;
+    
+    padding-bottom: 200px;
+}
+#Header{
+    background-image: url("HeaderImage.png");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
