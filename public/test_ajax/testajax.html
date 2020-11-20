@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX Test</title>
+	<script>
+
+		const loadRequest = function() {
+			let data = document.getElementById("postData").value;
+			let endpoint = document.getElementById("postEndpoint").value;
+			const url = 'http://localhost' + endpoint;
+			let http = new XMLHttpRequest();
+			http.open('POST', url, true);
+			http.setRequestHeader('Content-type', 'application/JSON');
+			http.onreadystatechange = () => {
+				if (http.readyState == 4 && http.status == 200) {
+					console.log(http.responseText)
+					document.getElementById("resp").innerHTML = http.responseText;
+				}
+			}
+			console.log("loadRequest() called");
+			console.log(`data: ${data}`);
+			http.send(data);
+		}
+
+		
+	</script>
+</head>
+<body>
+
+	<h1>AJAX POST TESTER</h1>
+
+	<h3>Request endpoint:</h3>
+	<form>
+		<input id="postEndpoint" value="/signup"></input>
+	</form>
+	<h3>Request body:</h3>
+	<textarea id="postData" rows="10" cols="100">{
+  "email": "johnsmith@example.com",
+  "password": "7CNWiWC",
+  "name": "John Smith",
+  "city": "La Jolla, CA"
+}</textarea><br>
+<br>
+	<button onclick="loadRequest()">Submit</button>
+
+	<hr>
+
+	<h3>Response:</h3>
+	<pre id="resp"></pre>
+
+
+</body>
+</html>
