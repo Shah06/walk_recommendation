@@ -48,5 +48,5 @@ function test() {
         console.log(error);
     })
 } 
-
+document.getElementById('submit').addEventListener('click', signUp);
 document.getElementById('submit').addEventListener('click', usersTest); 
