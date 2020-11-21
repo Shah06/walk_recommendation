@@ -7,14 +7,15 @@
 </head>
   <body>
 
-    <form>
+    <form onsubmit="return false">
       <h1>Login</h1>
       <label for="username">Enter your email:</label><br>
       <input type="text" id="email" name="email"><br>
       <label for="password">Enter your password:</label><br>
       <input type="text" id="password" name="password"><br>
       <br>
-      <input type="submit" value="Login" id = "submit">
+      <button type="button" value="Login" id ="submit">submit</button>
+
     </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
