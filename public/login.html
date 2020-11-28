@@ -20,7 +20,26 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
-    <script type="text/javascript" src="LoginDemo.js"></script>
+
+    <script type="text/javascript">
+
+      const url = 'http://localhost:80/login';
+      function login() {
+        axios.post(url, {
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        })
+        .then ((response) => {
+            const resp = response.data;
+          console.log(resp);
+            Cookies.set("sessionID", resp.slice(1, resp.length-1), { expires: 7 });
+        }, (error) => {
+            document.getElementById("loginmessage").innerHTML="Login failed. Username or password is wrong.";
+        })
+      } 
+
+      document.getElementById('submit').addEventListener('click', login); 
+    </script>
     
   </body>
 </html>

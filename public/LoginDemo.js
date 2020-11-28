@@ -9,8 +9,8 @@ function login() {
     	console.log(resp);
         Cookies.set("sessionID", resp.slice(1, resp.length-1), { expires: 7 });
     }, (error) => {
-        document.getElementById("loginmessage").innerHTML+="Login failed. Username or password is wrong.";
-        console.log("hey :)");
+        document.getElementById("loginmessage").innerHTML="Login failed. Username or password is wrong.";
+
     })
 } 
 

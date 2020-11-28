@@ -24,7 +24,28 @@
     <br>
     <input type="button" value="Sign Up" id="submit">
   </form>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-  <script type="text/javascript" src="SignUp.js"></script>
+  
+  <script type="module">
+import {formData, passwordCheck} from './javascript/script.js';
+const url = 'http://localhost:80/signup';
+  function signUp () {
+    if (passwordCheck())
+    axios.post(url, formData()
+    )
+    .then((response) => {
+        console.log(response);
+        document.getElementById('errorLog').innerHTML = "Your signup was successful. You may login.";
+        return;
+    }, (error) => {
+        console.log(error);
+        document.getElementById('errorLog').innerHTML = "Your email is taken. Please use another email.";
+        return;
+    })
+} 
+document.getElementById('submit').addEventListener('click', signUp); 
+  </script>
+
 </body>
 </html>

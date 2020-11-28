@@ -7,24 +7,58 @@
 </head>
   <body>
     <h1>Profile</h1>
+    <h2 id='errorLog'></h2>
     <form>
-        <label for="fullNameChange">Full Name:</label><br>
-        <input type="text" id="fullNameChange" name="fullNameChange" value=name><br>
-        <label for="emailChange">Email:</label><br>
-        <input type="text" id="emailChange" name="emailChange" value=email><br>
-        <label for="passwordChange">Password:</label><br>
-        <input type="text" id="passwordChange" name="passwordChange"><br>
-        <label for="confirmPWChange">Confirm Password Change</label><br>
-        <input type="text" id="confirmPWChange" name="confirmPWChange"><br>
-        <label for="cityChange">City</label><br>
-        <input type="text" id="cityChange" name="cityChange" value=city><br>
-        <br>
-        <button type="button" value="Update" id ="Update"></button>
+      <label for="fullname">Full Name:</label><br>
+      <input type="text" id="fullname" name="fullname"><br>
+      <label for="email">Email:</label><br>
+      <input type="text" id="email" name="email"><br>
+      <label for="password">Password Change:</label><br>
+      <input type="text" id="password" name="password"><br>
+      <label for="pwConfirm">Confirm Password Change:</label><br>
+      <input type="text" id="pwConfirm" name="pwConfirm"><br>
+      <label for="city">City:</label><br>
+      <input type="text" id ="city" name="city"><br>
+      <br>
+      <input type="button" value="Update" id="update">
     </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
-    <script type="text/javascript" src="Profile.js"></script>
+    
+    <script type="module">
+        import {formData, passwordCheck} from './javascript/script.js';
+        const url1 = 'http://localhost:80/profile';
+        const url2 = 'http://localhost:80/update';
+
+        axios.post(url1, {
+            sessionId: Cookies.get("sessionID"),
+        })
+        .then ((response) => {
+            const resp = response.data[0];
+            const id = resp.id;
+            document.getElementById('fullname').setAttribute('value', resp.name);
+            document.getElementById('email').setAttribute('value', resp.email);
+            document.getElementById('city').setAttribute('value', resp.city);
+        }, (error) => {
+            console.log(error);
+        })
+
+        function updateProfile() {
+            if (passwordCheck())
+            axios.post(url2, {
+                sessionId: Cookies.get("sessionID"),
+                updateFields: formData()
+            }).then((response) => {
+                console.log(response);
+                document.getElementById('errorLog').innerHTML = 'You have successfully updated your information.'
+            }, (error) => {
+                console.log(error);
+                document.getElementById('errorLog').innerHTML = 'There was an error in updating your information.'
+            })
+        }
+        document.getElementById('update').addEventListener('click', updateProfile);
+    </script>
     
   </body>
 </html>
