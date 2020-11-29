@@ -1,4 +1,5 @@
 var weatherArray= [];
+
 /** The function gets weather data for the next 15 hours and stores it in an array
 */
 function updateWeather() {
@@ -47,5 +48,25 @@ function recommendWeather() {
         var recNoPh = document.createElement("p").appendChild(document.createTextNode("There aren't any good times to walk. Check back later."));
         document.getElementById("walkRecommendation").appendChild(recNoPh);
     }
+}
+
+function initMap() {
+  // The location
+    axios.post('http://localhost:80/weather', {
+        sessionId: Cookies.get("sessionID")
+    })
+    .then ((response) => { 
+        var cityLat = response.data.city.coord.lat;
+        var cityLon = response.data.city.coord.lon;
+        const location = {lat: cityLat, lng: cityLon };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 14,
+          center: location,
+        });
+    }, (error) => {
+        console.log(Cookies.get("sessionID"));
+        console.log(error);
+    })
+
 }
 updateWeather();

@@ -26,24 +26,7 @@
     <div id = "weatherlisting"> </div> <br>
     <div id = "walkRecommendation"> </div>
     <div id="map"></div>
-
-    <script>
-      // Initialize and add the map
-      function initMap() {
-        // The location
-        navigator.geolocation.getCurrentPosition(position => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          console.log(lat, lon);
-          const location = {lat: lat, lng: lon };
-          // The map, center
-          const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 14,
-            center: location,
-          });
-        });
-      }
-    </script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script type="text/javascript" src="Home.js"></script>
