@@ -29,6 +29,7 @@ function recommendWeather() {
     var i;
     for (i = 0; i<weatherArray.length ; i++)
     {
+        console.log("hhee ehehe");
         var currentElement = weatherArray[i];
         if (currentElement[1]>7 && currentElement[1]<26)
         {
