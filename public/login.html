@@ -12,7 +12,7 @@
       <label for="username">Enter your email:</label><br>
       <input type="text" id="email" name="email"><br>
       <label for="password">Enter your password:</label><br>
-      <input type="text" id="password" name="password"><br>
+      <input type="password" id="password" name="password"><br>
       <br>
       <button type="button" value="Login" id ="submit">submit</button>
 
@@ -21,8 +21,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 
-    <script type="text/javascript">
-
+    <script type="module">
+      import {redirectToHome} from './javascript/script.js';
       const url = 'http://localhost:80/login';
       function login() {
         axios.post(url, {
@@ -33,6 +33,7 @@
             const resp = response.data;
           console.log(resp);
             Cookies.set("sessionID", resp.slice(1, resp.length-1), { expires: 7 });
+            redirectToHome();
         }, (error) => {
             document.getElementById("loginmessage").innerHTML="Login failed. Username or password is wrong.";
         })

@@ -14,3 +14,8 @@ export function passwordCheck() {
     }
     return true;
 }
+
+export function redirectToHome() {
+    const url = './Home.html';
+    window.location.assign(url);
+}
