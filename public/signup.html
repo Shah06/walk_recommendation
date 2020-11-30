@@ -5,26 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Sign Up Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-  <h1>Sign Up</h1><br>
-  <h2 id="errorLog"></h2>
-  <form id="form1"> 
-    <label for="fullname">Enter your full name:</label><br>
-    <input type="text" id="fullname" name="fullname"><br>
-    <label for="email">Enter your email:</label><br>
-    <input type="text" id="email" name="email"><br>
-    <label for="password">Enter your password:</label><br>
-    <input type="password" id="password" name="password"><br>
-    <label for="pwConfirm">Confirm password:</label><br>
-    <input type="password" id="pwConfirm" name="pwConfirm"><br>
-    <label for="city">Enter your city:</label><br>
-    <input type="text" id ="city" name="city"><br>
-    <br>
-    <input type="button" value="Sign Up" id="submit">
-  </form>
-  <a href='http://localhost/login.html'>Already signed up? Login here</a>
+
+  <div class="row justify-content-center" >
+
+    <div class="d-flex flex-column w-50 mt-5 bg-light" >
+      <div class="row justify-content-center ">
+        <h1>Sign Up</h1><br>
+      </div>
+      <h6 id="errorLog" class="text-muted row justify-content-center"></h6>
+      <form id="form1"> 
+        <div class="form-group px-2">
+          <label for="fullname">Enter your full name:</label><br>
+          <input type="text" id="fullname" name="fullname" class="form-control">
+        </div>
+  
+        <div class="form-group px-2">
+          <label for="email">Enter your email:</label><br>
+          <input type="text" id="email" name="email" class="form-control">
+        </div>
+  
+        <div class="form-group px-2">
+          <label for="password">Enter your password:</label><br>
+          <input type="password" id="password" name="password" class="form-control">
+        </div>
+  
+        <div class="form-group px-2">
+          <label for="pwConfirm">Confirm password:</label><br>
+          <input type="password" id="pwConfirm" name="pwConfirm" class="form-control">
+        </div>
+  
+        <div class="form-group px-2">
+          <label for="city">Enter your city:</label><br>
+          <input type="text" id ="city" name="city" class="form-control">
+        </div>
+  
+        <div class="row justify-content-center">
+          <input type="button" value="Sign Up" id="submit" class="btn btn-secondary"><br>
+        </div>
+        <br>
+        <div class="pl-2 mb-3">
+          <a href='http://localhost/login.html'>Already signed up? Login here</a>
+        </div>
+      </form>
+
+
+    </div>
+
+  </div>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
   
   <script type="module">
