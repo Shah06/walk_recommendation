@@ -37,7 +37,7 @@ function recommendWeather(weatherArray) {
     console.log(weatherArray.length);
     var isWalk = false;
     var minTemp = 15;
-    var maxTemp = 30;
+    var maxTemp = 15;
     var bestTemp = 100;
     var bestIndex;
     for (i = 0; i<weatherArray.length ; i++)
@@ -56,17 +56,17 @@ function recommendWeather(weatherArray) {
         if (Math.abs(currentElement[1]-minTemp)<bestTemp)
         {
             bestIndex = i;
-            bestTemp = currentElement[1];
+            bestTemp = Math.abs(currentElement[1]-minTemp);
         }
         if (Math.abs(currentElement[1]-maxTemp)<bestTemp)
         {
             bestIndex = i;
-            bestTemp = currentElement[1];
+            bestTemp = Math.abs(currentElement[1]-maxTemp);
         }
     }
     if(!isWalk)
     {
-        if (bestTemp<minTemp)
+        if (weatherArray[bestIndex][1]<minTemp)
         {
             console.log("No great times to walk.");
             var recText = "Its a bit chilly but " + weatherArray[bestIndex][0].getHours() + "o'clock is the best time to walk";
@@ -75,7 +75,7 @@ function recommendWeather(weatherArray) {
             document.getElementById("walkRecommendation").appendChild(document.createElement("br"));
 
         }
-        if(bestTemp>maxTemp)
+        if(weatherArray[bestIndex][1]>maxTemp)
         {
             console.log("No great times to walk.");
             var recText = "Its a bit hot but " + weatherArray[bestIndex][0].getHours() + "o'clock is the best time to walk";
