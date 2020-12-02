@@ -37,7 +37,7 @@ function recommendWeather(weatherArray) {
     console.log(weatherArray.length);
     var isWalk = false;
     var minTemp = 15;
-    var maxTemp = 15;
+    var maxTemp = 30;
     var bestTemp = 100;
     var bestIndex;
     for (i = 0; i<weatherArray.length ; i++)
