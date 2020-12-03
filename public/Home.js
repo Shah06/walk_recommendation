@@ -15,7 +15,9 @@ function updateWeather() {
             var currentTemp = (resp[i]['main']['temp']-273.15).toPrecision(3);
             var currentTime = new Date(resp[i]["dt"]*1000);
             var weatherCondition = resp[i]['weather'][0]['id'];
+            var weatherTextCondition = resp[i]['weather'][0]['description'];
             weatherArr.push([currentTime, currentTemp, weatherCondition]);
+
 
             //Add the text to the html element. Change the text/location here
           /*  var newWeatherText = "The weather at " + (currentTime) +" is " + (currentTemp) + " degrees Celsius";
