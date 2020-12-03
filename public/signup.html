@@ -6,12 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Sign Up Page</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+
 </head>
 
 <body>
 
-  <div class="row justify-content-center" >
+  <link rel="stylesheet" href="headerStyle.css">
+  <header>  
+    <nav id = 'nav-bar'>
+      <div class='d-flex flex-row'>
+        <a href = "welcome.html" class="nav-link"> HOME</a>
+        <a href = " " class="nav-link"> ABOUT </a>
+        <a href = " " class="nav-link"> CONTACT US </a>
+        <a href = "login.html" class="nav-link"> LOGIN IN </a>
+      <div>
+    </nav>
+</header> <br>
 
+  <div class="row justify-content-center" >
     <div class="d-flex flex-column w-50 mt-5 bg-light" >
       <div class="row justify-content-center ">
         <h1>Sign Up</h1><br>
@@ -51,17 +64,14 @@
           <a href='http://localhost/login.html'>Already signed up? Login here</a>
         </div>
       </form>
-
-
     </div>
-
   </div>
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
   
   <script type="module">
-import {formData, passwordCheck} from './javascript/script.js';
+import {formData, passwordCheck, redirectToHome} from './javascript/script.js';
 const url = 'http://localhost:80/signup';
   function signUp () {
     if (passwordCheck())
@@ -71,11 +81,10 @@ const url = 'http://localhost:80/signup';
         document.getElementById('form1').reset();
         console.log(response);
         document.getElementById('errorLog').innerHTML = "Your signup was successful. You may login.";
-        return;
     }, (error) => {
         console.log(error);
         document.getElementById('errorLog').innerHTML = "Your email is taken. Please use another email.";
-        return;
+        
     })
 } 
 document.getElementById('submit').addEventListener('click', signUp); 
