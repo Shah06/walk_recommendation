@@ -7,6 +7,30 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
   <body>
+    <link rel="stylesheet" href="navbarStyle.css">
+    <header>  
+      <nav id = 'nav-bar'>
+        
+        <div class='d-flex flex-row justify-content-left'>
+          <a href="profile.html" class="nav-link">PROFILE</a>
+          <a href="index.html" class="nav-link">WALKING</a>
+          <input type="button" value= "Log Out" id="logout">
+        </div>
+
+        <div class='d-flex flex-row'>
+          <a href = "welcome.html" class="nav-link"> HOME</a>
+          <a href = " " class="nav-link"> ABOUT </a>
+          <a href = " " class="nav-link"> CONTACT US </a>
+          <a href = "login.html" class="nav-link"> LOGIN IN </a>
+        <div>
+
+      </nav>
+  </header> <br>
+
+  <script type="module">
+    import {logOut} from './javascript/script.js';
+    document.getElementById('logout').addEventListener('click', logOut);
+  </script>
     <div class="row justify-content-center">
       <div class="d-flex flex-column w-50 mt-5 bg-light">
         <div class="row justify-content-center ">

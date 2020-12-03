@@ -63,9 +63,9 @@ app.use(cookieParser());
 // static files in /public
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-	res.send('walk_recommendation test response.');
-});
+//app.get('/', (req, res) => {
+//	res.send('walk_recommendation test response.');
+//});
 
 app.post('/weather', (req, res) => {
 
