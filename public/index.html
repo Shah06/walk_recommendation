@@ -52,9 +52,10 @@
       img {
         width: 155px;
         height:100px;
+      }
+      .Image0, .Image1, .Image2, .Image3, .Image4, .Image5, .Image6, .Image7 {
         filter: brightness(50%);
       }
-
             /* Set the size of the div element that contains the map */
       .map {
         height: 600px;
@@ -74,7 +75,7 @@
 
 </head>
   <body>
-    <link rel="stylesheet" href="navbarStyle.css">
+    <link rel="stylesheet" href="./stylesheets/header_footer.css">
     <header> 
       <nav class="loginNav"> 
         <div class='d-flex flex-row'>
@@ -100,9 +101,9 @@
     sessionValidation();
   </script>
   
-      <div class="d-flex justify-content-center flex-column flex-fill">
-        <h1 class="display-1 justify-content-center"> Welcome</h1>
-        <p class="h1 justify-content-center">Here are your recommended walking times for today!</p>
+      <div class="d-flex text-center flex-column w-100">
+        <h1 class="display-1" id="title"> Welcome to </h1>
+        <p class="h1">Here are your recommended walking times for today!</p>
       </div>
  
   
@@ -156,7 +157,18 @@
       </div>
   
 
-    <div id="map" class="map"></div>
+   <br><br> <div id="map" class="map"></div>
+
+   <br><br><footer></footer>
+<div class="bg-light text-center mb-2">
+    <h3>Daily Walking Advisor</h3>
+    <p> <lead>Reminding users to take the best possible walk everyday</lead></p>
+  </div>
+    <div class="d-flex flex-row justify-content-center mb-3">
+        <a href = " " class="mr-5"> ABOUT</a>
+        <a href = " " class="ml-5"> CONTACT US </a>
+    </div>
+</footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>

@@ -8,6 +8,10 @@ function updateWeather() {
         //Change the number of responses displayed here
         var numResponses = 8;
         var resp = response['data']['list'];
+        const cityLocation = response['data']['city'];
+        const cityName = cityLocation.name;
+        console.log(cityName);
+        document.getElementById('title').innerHTML += cityName;
         console.log(response);
         var i;
         var weatherArr = [];
@@ -30,6 +34,8 @@ function updateWeather() {
             document.getElementById(textBoxName).appendChild(document.createElement("br"));
             document.getElementById(textBoxName).appendChild(document.createElement("br"));
             document.getElementById(textBoxName).innerHTML += currentTemp + " degrees Celsius";
+            document.getElementById(textBoxName).appendChild(document.createElement("br"));
+            document.getElementById(textBoxName).innerHTML += weatherTextCondition;
             document.getElementById(textBoxName).appendChild(document.createElement("br"));
             document.getElementById(textBoxName).appendChild(document.createElement("br"));
         }

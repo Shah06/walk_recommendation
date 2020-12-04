@@ -28,7 +28,7 @@
 </head>
   <body>
 
-    <link rel="stylesheet" href="navbarStyle.css">
+    <link rel="stylesheet" href="./stylesheets/header_footer.css">
     <header> 
       <nav class="loginNav"> 
         <div class='d-flex flex-row'>
@@ -96,20 +96,32 @@
       </div>
     </div>
 
+    <br><br><footer></footer>
+    <div class="bg-light text-center mb-2">
+        <h3>Daily Walking Advisor</h3>
+        <p> <lead>Reminding users to take the best possible walk everyday</lead></p>
+      </div>
+        <div class="d-flex flex-row justify-content-center mb-3">
+            <a href = " " class="mr-5"> ABOUT</a>
+            <a href = " " class="ml-5"> CONTACT US </a>
+        </div>
+  </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     
     <script type="module">
         import {formData, passwordCheck, sessionValidation, formChecker} from './javascript/script.js';
         
+        
         sessionValidation();
-
         window.onload = function() {
           const message = localStorage.getItem('profileResult');
           document.getElementById("errorLog").innerHTML = message;
           localStorage.removeItem('profileResult');
+          sessionValidation();
       }
-
+      
         const url1 = 'http://localhost:80/profile';
         const url2 = 'http://localhost:80/update';
 
