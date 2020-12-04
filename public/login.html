@@ -8,14 +8,14 @@
 </head>
   <body>
 
-    <link rel="stylesheet" href="navbarStyle.css">
+    <link rel="stylesheet" href="./stylesheets/header_footer.css">
     <header>  
       <nav id = 'nav-bar'>
         <div class='d-flex flex-row'>
           <a href = "welcome.html" class="nav-link"> HOME</a>
           <a href = " " class="nav-link"> ABOUT </a>
           <a href = " " class="nav-link"> CONTACT US </a>
-          <a href = "login.html" class="nav-link"> LOGIN IN </a>
+          <a href = "login.html" class="nav-link"> LOGIN</a>
         <div>
       </nav>
   </header> <br><br>
@@ -27,7 +27,7 @@
           <h1>Login</h1>
         </div>
 
-        <p id = "loginmessage"> </p><br>
+        <p id = "loginmessage" class="text-muted row justify-content-center"> </p><br>
         
         <form onsubmit="return false">
           
@@ -47,12 +47,22 @@
           </div>
 
           <div class="pl-2 mb-3">
-            <a href='http://localhost/signup.html'>Click Here to Sign Up</a>
+            <a href='./signup.html'>Click Here to Sign Up</a>
           </div>
         </form>
       </div>
     </div>
 
+    <br><br><footer></footer>
+    <div class="bg-light text-center mb-2">
+        <h3>Daily Walking Advisor</h3>
+        <p> <lead>Reminding users to take the best possible walk everyday</lead></p>
+      </div>
+        <div class="d-flex flex-row justify-content-center mb-3">
+            <a href = " " class="mr-5"> ABOUT</a>
+            <a href = " " class="ml-5"> CONTACT US </a>
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
@@ -76,6 +86,12 @@
       } 
 
       document.getElementById('submit').addEventListener('click', login); 
+
+      window.onload = function() {
+          const message = localStorage.getItem('loginResult');
+          document.getElementById("loginmessage").innerHTML = message;
+          localStorage.removeItem('loginResult');
+      }
     </script>
     
   </body>

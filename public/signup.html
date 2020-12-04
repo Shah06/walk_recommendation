@@ -12,14 +12,14 @@
 
 <body>
 
-  <link rel="stylesheet" href="navbarStyle.css">
+  <link rel="stylesheet" href="./stylesheets/header_footer.css">
   <header>  
     <nav id = 'nav-bar'>
       <div class='d-flex flex-row'>
         <a href = "welcome.html" class="nav-link"> HOME</a>
         <a href = " " class="nav-link"> ABOUT </a>
         <a href = " " class="nav-link"> CONTACT US </a>
-        <a href = "login.html" class="nav-link"> LOGIN IN </a>
+        <a href = "login.html" class="nav-link"> LOGIN</a>
       <div>
     </nav>
 </header> <br>
@@ -52,7 +52,7 @@
         </div>
   
         <div class="form-group px-2">
-          <label for="city">Enter your city:</label><br>
+          <label for="city">Enter your city (City, State, Country):</label><br>
           <input type="text" id ="city" name="city" class="form-control">
         </div>
   
@@ -61,20 +61,31 @@
         </div>
         <br>
         <div class="pl-2 mb-3">
-          <a href='http://localhost/login.html'>Already signed up? Login here</a>
+          <a href='./login.html'>Already signed up? Login here</a>
         </div>
       </form>
     </div>
   </div>
-
+  
+  <br><br><footer></footer>
+  <div class="bg-light text-center mb-2">
+      <h3>Daily Walking Advisor</h3>
+      <p> <lead>Reminding users to take the best possible walk everyday</lead></p>
+    </div>
+      <div class="d-flex flex-row justify-content-center mb-3">
+          <a href = " " class="mr-5"> ABOUT</a>
+          <a href = " " class="ml-5"> CONTACT US </a>
+      </div>
+  </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
   
   <script type="module">
-import {formData, passwordCheck, redirectToHome} from './javascript/script.js';
+import {formData, passwordCheck, redirectToHome, formChecker} from './javascript/script.js';
 const url = 'http://localhost:80/signup';
+const message = "errorLog";
   function signUp () {
-    if (passwordCheck())
+    if (formChecker(message) && passwordCheck())
     axios.post(url, formData()
     )
     .then((response) => {

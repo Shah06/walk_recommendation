@@ -5,27 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+      html, body {
+          margin: 0;
+          padding: 0;
+          border: 0;
+          font-size: 100%;
+          font: inherit;
+          vertical-align: baseline;
+      }
+      body {
+          line-height: 1;
+      }
+      .loginNav {
+        position: relative;
+        float: left;
+        font-size: 1.6rem;
+        font-weight: 500;
+      }
+  </style>
 </head>
   <body>
-    <link rel="stylesheet" href="navbarStyle.css">
-    <header>  
-      <nav id = 'nav-bar'>
-        
-        <div class='d-flex flex-row justify-content-left'>
+
+    <link rel="stylesheet" href="./stylesheets/header_footer.css">
+    <header> 
+      <nav class="loginNav"> 
+        <div class='d-flex flex-row'>
           <a href="profile.html" class="nav-link">PROFILE</a>
           <a href="index.html" class="nav-link">WALKING</a>
-          <input type="button" value= "Log Out" id="logout">
-        </div>
-
-        <div class='d-flex flex-row'>
-          <a href = "welcome.html" class="nav-link"> HOME</a>
-          <a href = " " class="nav-link"> ABOUT </a>
-          <a href = " " class="nav-link"> CONTACT US </a>
-          <a href = "login.html" class="nav-link"> LOGIN IN </a>
-        <div>
-
-      </nav>
-  </header> <br>
+          <input type="button" class="btn btn-primary btn-sm ml-3" value= "Log Out" id="logout">
+        </nav>
+  
+        <nav id = 'nav-bar'>
+          <div class="d-flex flex-row">
+              <a href = "welcome.html" class="nav-link"> HOME</a>
+              <a href = " " class="nav-link"> ABOUT </a>
+              <a href = " " class="nav-link"> CONTACT US </a>
+              <a href = "login.html" class="nav-link"> LOGIN</a>
+          </div>
+        </nav>
+      </div>
+    </header> <br><br>
 
   <script type="module">
     import {logOut} from './javascript/script.js';
@@ -35,23 +56,24 @@
       <div class="d-flex flex-column w-50 mt-5 bg-light">
         <div class="row justify-content-center ">
           <h1>Profile</h1>
+   
         </div>
 
         <h6 id='errorLog' class="text-muted row justify-content-center"></h6>
 
         <form>
           <div class="form-group px-2">
-            <label for="fullname">Full Name:</label><br>
+            <label for="fullname">Enter Your Full Name Change:</label><br>
             <input type="text" id="fullname" name="fullname" class="form-control">
           </div>
 
           <div class="form-group px-2">
-            <label for="email">Email:</label><br>
+            <label for="email">Enter Your Email Change:</label><br>
             <input type="text" id="email" name="email" class="form-control">
           </div>
 
           <div class="form-group px-2">
-            <label for="password">Password Change:</label><br>
+            <label for="password">Enter Your Password Change:</label><br>
             <input type="password" id="password" name="password" class="form-control">
           </div>
 
@@ -61,7 +83,7 @@
           </div>
 
           <div class="form-group px-2"> 
-            <label for="city">City:</label><br>
+            <label for="city">Enter Your City Change:</label><br>
             <input type="text" id ="city" name="city" class="form-control">
           </div>
           <br>
@@ -74,11 +96,32 @@
       </div>
     </div>
 
+    <br><br><footer></footer>
+    <div class="bg-light text-center mb-2">
+        <h3>Daily Walking Advisor</h3>
+        <p> <lead>Reminding users to take the best possible walk everyday</lead></p>
+      </div>
+        <div class="d-flex flex-row justify-content-center mb-3">
+            <a href = " " class="mr-5"> ABOUT</a>
+            <a href = " " class="ml-5"> CONTACT US </a>
+        </div>
+  </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     
     <script type="module">
-        import {formData, passwordCheck} from './javascript/script.js';
+        import {formData, passwordCheck, sessionValidation, formChecker} from './javascript/script.js';
+        
+        
+        sessionValidation();
+        window.onload = function() {
+          const message = localStorage.getItem('profileResult');
+          document.getElementById("errorLog").innerHTML = message;
+          localStorage.removeItem('profileResult');
+          sessionValidation();
+      }
+      
         const url1 = 'http://localhost:80/profile';
         const url2 = 'http://localhost:80/update';
 
@@ -93,10 +136,12 @@
             document.getElementById('city').setAttribute('value', resp.city);
         }, (error) => {
             console.log(error);
+            document.getElementById("errorLog").innerHTML = "There was an error updating your information";
         })
 
         function updateProfile() {
-            if (passwordCheck())
+          const log = "errorLog";
+            if (formChecker(log) && passwordCheck())
             axios.post(url2, {
                 sessionId: Cookies.get("sessionID"),
                 updateFields: formData()
@@ -108,6 +153,7 @@
                 document.getElementById('errorLog').innerHTML = 'There was an error in updating your information.'
             })
         }
+
         document.getElementById('update').addEventListener('click', updateProfile);
     </script>
     
