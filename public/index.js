@@ -39,6 +39,9 @@ function updateWeather() {
     }, (error) => {
         console.log(Cookies.get("sessionID"));
         console.log(error);
+        let myValues = "There was an error finding your city. Please update it.";
+        localStorage.setItem('profileResult', myValues);
+        window.location.assign("./profile.html");
     })
 }
 function recommendWeather(weatherArray) {
