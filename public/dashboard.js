@@ -22,13 +22,6 @@ function updateWeather() {
             var weatherTextCondition = resp[i]['weather'][0]['description'];
             weatherArr.push([currentTime, currentTemp, weatherCondition]);
 
-
-            //Add the text to the html element. Change the text/location here
-          /*  var newWeatherText = "The weather at " + (currentTime) +" is " + (currentTemp) + " degrees Celsius";
-            var newWeatherPh = document.createElement("p").appendChild(document.createTextNode(newWeatherText));
-            document.getElementById("weatherlisting").appendChild(newWeatherPh);
-            document.getElementById("weatherlisting").appendChild(document.createElement("br")); */
-
             let textBoxName = "textbox" + i;
             document.getElementById(textBoxName).innerHTML = currentTime;
             document.getElementById(textBoxName).appendChild(document.createElement("br"));
@@ -54,6 +47,7 @@ function recommendWeather(weatherArray) {
     console.log(weatherArray);
     var i;
     console.log(weatherArray.length);
+    let currentTime;
     var isWalk = false;
     var minTemp = 15;
     var maxTemp = 30;
@@ -62,24 +56,24 @@ function recommendWeather(weatherArray) {
     for (i = 0; i<weatherArray.length ; i++)
     {
         var currentElement = weatherArray[i];
+        currentTime = currentElement[0];
+        currentTime = currentTime.toLocaleTimeString('en-US');
 
         let imageName = "Image" + i;
         document.getElementById(imageName).src = weatherIcon(currentElement[2]);
 
-        //Checks for time and makes sure there are no adverse weather conditions
+        //Checks for temp and makes sure there are no adverse weather conditions
         if ((currentElement[1] >= minTemp && currentElement[1] <= maxTemp) && (currentElement[2]<=804 && currentElement[2]>=800))
         {
-            //Change the text/location for good time to walk here
-         /*   var recText = currentElement[0].getHours() + "o'clock is a good time to take a walk";
-            var recPh = document.createElement("p").appendChild(document.createTextNode(recText));
-            document.getElementById("walkRecommendation").appendChild(recPh);
-            document.getElementById("walkRecommendation").appendChild(document.createElement("br")); */
-
+            
             let textBoxName = "textbox" + i;
             document.getElementById(textBoxName).innerHTML += "Good Time to Walk";
             document.getElementById(imageName).style.filter = "brightness(100%)";
 
             isWalk = true;
+            
+            document.getElementById("recommendedTime").innerHTML += currentTime;
+            document.getElementById("recommendedTime").innerHTML += "    ";
         }
         if (Math.abs(currentElement[1]-minTemp)<bestTemp)
         {
@@ -96,34 +90,32 @@ function recommendWeather(weatherArray) {
     {
         if (weatherArray[bestIndex][1]<minTemp)
         {
-          /*  console.log("No great times to walk.");
-            var recText = "Its a bit chilly but " + weatherArray[bestIndex][0].getHours() + "o'clock is the best time to walk";
-            var recPh = document.createElement("p").appendChild(document.createTextNode(recText));
-            document.getElementById("walkRecommendation").appendChild(recPh);
-            document.getElementById("walkRecommendation").appendChild(document.createElement("br")); */
-
             textBoxName = "textbox" + bestIndex;
             imageName = "Image" + bestIndex;
             document.getElementById(textBoxName).innerHTML += "Cold, but still the best time to walk today";
             document.getElementById(imageName).style.filter = "brightness(100%)";
 
+            var currentElement = weatherArray[bestIndex];
+            currentTime = currentElement[0];
+            currentTime = currentTime.toLocaleTimeString('en-US');
+            
+            document.getElementById("recommendedTime").innerHTML = currentTime;
         }
         if(weatherArray[bestIndex][1]>maxTemp)
         {
-         /*   console.log("No great times to walk.");
-            var recText = "Its a bit hot but " + weatherArray[bestIndex][0].getHours() + "o'clock is the best time to walk";
-            var recPh = document.createElement("p").appendChild(document.createTextNode(recText));
-            document.getElementById("walkRecommendation").appendChild(recPh);
-            document.getElementById("walkRecommendation").appendChild(document.createElement("br")); */
 
             textBoxName = "textbox" + bestIndex;
             imageName = "Image" + bestIndex;
             document.getElementById(textBoxName).innerHTML += "Hot, but still the best time to walk today";
             document.getElementById(imageName).style.filter = "brightness(100%)";
+
+            var currentElement = weatherArray[bestIndex];
+            currentTime = currentElement[0];
+            currentTime = currentTime.toLocaleTimeString('en-US');
+            
+            document.getElementById("recommendedTime").innerHTML = currentTime;
         }
 
-        //var recNoPh = document.createElement("p").appendChild(document.createTextNode("There aren't any good times to walk. Check back later."));
-        //document.getElementById("walkRecommendation").appendChild(recNoPh);
     }
 }
 

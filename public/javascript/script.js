@@ -1,9 +1,15 @@
 export function formData() {
+    let nameValue, emailValue, passwordValue, cityValue;
+    if (document.getElementById('fullname').value != "") nameValue = document.getElementById('fullname').value;
+    if (document.getElementById('email').value != "") emailValue = document.getElementById('email').value;
+    if (document.getElementById('password').value != "") passwordValue = document.getElementById('password').value;
+    if (document.getElementById('city').value != "") cityValue = document.getElementById('city').value;
+    
     return {
-        name: document.getElementById('fullname').value,
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value,
-        city: document.getElementById('city').value
+        name: nameValue,
+        email: emailValue,
+        password: passwordValue,
+        city: cityValue
     }
 }
 export function formChecker(stringName) {
@@ -28,7 +34,7 @@ export function passwordCheck() {
 }
 
 export function redirectToHome() {
-    const url = './index.html';
+    const url = './dashboard.html';
     window.location.assign(url);
 }
 export function logOut() {

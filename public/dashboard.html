@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Add Map</title>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMGhbfZ-nrZC4mecxDfmwLBltPVFU-C-U&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+
+    <style type="text/css">
+
+      * {
+        box-sizing: border-box;
+      }
+      html, body {
+          margin: 0;
+          padding: 0;
+          border: 0;
+          font-size: 100%;
+          font: inherit;
+          vertical-align: baseline;
+      }
+      body {
+          line-height: 1;
+      }
+ 
+      .hide0, .hide1, .hide2, .hide3, .hide4, .hide5, .hide6, .hide7 {
+        visibility: hidden;
+        width: 200px;
+        background-color: whitesmoke;
+        color: black;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        border-color: black;
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+      }
+
+      .Image0:hover + .hide0, .Image1:hover + .hide1, .Image2:hover + .hide2, .Image3:hover + .hide3, .Image4:hover + .hide4, 
+      .Image5:hover + .hide5, .Image6:hover + .hide6, .Image7:hover + .hide7{
+        visibility: visible;
+      }
+
+      img {
+        width: 155px;
+        height:100px;
+      }
+      .Image0, .Image1, .Image2, .Image3, .Image4, .Image5, .Image6, .Image7 {
+        filter: brightness(50%);
+      }
+            /* Set the size of the div element that contains the map */
+      .map {
+        height: 600px;
+        /* The height is 400 pixels */
+        width: 80%;
+        /* The width is the width of the web page */
+        margin-left: 160px;
+      }
+
+
+    </style>
+
+</head>
+  <body>
+    <link rel="stylesheet" href="./stylesheets/header_footer.css">
+    <header> 
+      <div class="d-flex flex-row justify-content-between">
+        <nav class="loginNav"> 
+          <div class='d-flex flex-row'>
+            <a href="profile.html" class="nav-link">PROFILE</a>
+            <a href="" class="nav-link" id="logout">LOGOUT</a>
+          </div>
+        </nav>
+      
+        <div class="d-flex justify-content-center"> 
+          <a href="dashboard.html" class="btn btn-primary btn-lg">GO TO DASHBOARD</a>
+        </div>
+      
+          <nav id = 'nav-bar'>
+            <div class="d-flex flex-row ml-5">
+                <a href = "about.html" class="nav-link"> ABOUT </a>
+                <a href = "login.html" class="nav-link"> LOGIN</a>
+            </div>
+          </nav>
+      </div>    
+    </header> <br><br>
+    
+    <script type="module">
+      import {logOut, sessionValidation} from './javascript/script.js';
+      document.getElementById('logout').addEventListener('click', logOut);
+      sessionValidation();
+    </script>
+  
+      <div class="d-flex text-center flex-column w-100">
+        <h1 class="display-1" id="title"> Welcome to </h1>
+        <p class="h1">Here are your recommended walking times for today!</p><br><br>
+        <p class="display-4 text-wrap" id="recommendedTime"></p>
+        <p class = "h2">Hover the icons below for more information</p>
+      </div>
+ 
+  
+    
+      <div class="d-flex flex-column justify-content-center">
+ 
+        <div class="d-flex flex-row justify-content-center m-2" >
+          
+          <div>
+            <img class = "Image0" id="Image0" alt="Weather Icon">
+            <div class="hide0"><p id='textbox0'>Filler</p></div>
+          </div>
+
+
+           <div>
+            <img class="Image1" id="Image1" alt="Weather Icon">
+            <div class="hide1"><p id='textbox1'>Filler</p></div>
+          </div>
+           
+          <div>
+            <img class="Image2" id="Image2" alt="Weather Icon">
+            <div class="hide2"><p  id='textbox2'>Filler</p></div>
+          </div>
+          
+          <div>
+            <img class="Image3" id="Image3" alt="Weather Icon">
+            <div class="hide3"><p  id='textbox3'>Filler</p></div>
+          </div>
+          
+          <div>
+            <img class="Image4" id="Image4" alt="Weather Icon">
+            <div class="hide4" ><p id='textbox4'>Filler</p></div>
+          </div>
+           
+          <div>
+            <img class="Image5" id="Image5" alt="Weather Icon">
+            <div class="hide5"><p  id='textbox5'>Filler</p></div>
+          </div>
+           
+          <div>
+            <img class="Image6" id="Image6" alt="Weather Icon">
+            <div class="hide6"><p  id='textbox6'>Filler</p></div>
+          </div>
+          
+          <div>
+            <img class="Image7" id="Image7" alt="Weather Icon">
+            <div class="hide7"><p  id='textbox7'>Filler</p></div>
+          </div>
+
+        </div>
+      </div>
+  
+
+   <br><br> <div id="map" class="map"></div>
+
+   <br><br><footer></footer>
+   <div class="bg-light text-center mb-2">
+       <h3>Daily Walking Advisor</h3>
+       <p> <lead>Reminding users to take the best possible walk everyday</lead></p>
+     </div>
+       <div class="d-flex flex-row justify-content-center mb-3">
+           <a href = "about.html"> ABOUT</a>
+       </div>
+   </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script type="text/javascript" src="dashboard.js"></script>
+
+  </body>
+</html>
+
